@@ -1,6 +1,6 @@
 # null 值 #
 
-在 PostgreSQL 中，字段中的 null 比较特殊。
+在 PostgreSQL 中，字段中的 null 值在做比较时相对特殊，在做关联查询时无法匹配到 null 值。
 
 + null 之间不能使用 <>, = 作比较
 
@@ -40,15 +40,15 @@
 + 表关联字段中有 null 值时无法匹配
 
     ``` shell
-    postgres=# create table null1(id integer, name text);
-    postgres=# insert into null1 values(1);
-    postgres=# select * from null1 where id = 1;
+    postgres=# create table null2(id integer, name text);
+    postgres=# insert into null2 values(1);
+    postgres=# select * from null2 where id = 1;
      id | name
     ----+------
       1 |
     (1 rows)
 
-    postgres=# select * from null1 where id = 1;
+    postgres=# select * from null2 where id = 1;
      id | name
     ----+------
       1 |
